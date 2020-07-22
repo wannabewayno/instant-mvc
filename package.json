@@ -1,0 +1,29 @@
+{
+  "name": "instant-mvc",
+  "version": "0.0.0",
+  "description": "an instant mvc boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wannabewayno/instant-mvc.git"
+  },
+  "keywords": [
+    "mvc",
+    "boilerplate",
+    "react"
+  ],
+  "author": "wayne c griffiths",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wannabewayno/instant-mvc/issues"
+  },
+  "homepage": "https://github.com/wannabewayno/instant-mvc#readme",
+  "devDependencies": {
+    "inquirer": "^7.3.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
