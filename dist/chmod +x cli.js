@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const buildRouteMap = require('./routeMap');
 const validateMethod = require('./validateMethod');
 const path = require('path');

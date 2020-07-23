@@ -2,9 +2,12 @@
   "name": "instant-mvc",
   "version": "0.1.0",
   "description": "an instant mvc boilerplate",
-  "main": "index.js",
+  "main": "./dist/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "build-routes": "./cli.js"
   },
   "repository": {
     "type": "git",
