@@ -3,8 +3,16 @@
 module.exports = {
     routes:[
         {
-            path:'./',
-            methods:['index'],
+            path:'./html/index',
+            methods:['GET'],
+        },
+        {
+            path:'./html/login',
+            methods:['GET'],
+        },
+        {
+            path:'./html/books',
+            methods:['GET'],
         },
         {
             path:'./api/books',
@@ -12,11 +20,39 @@ module.exports = {
         },
         {
             path:'./api/books/:id',
-            methods:['DELETE','GET'],
+            methods:['GET','DELETE'],
         },
         {
-            path:'./api/books/check',
-            methods:['POST'],
-        }
+            path:'./api/books/volumes',
+            methods:['GET','POST'],
+        },
+        {
+            path:'./api/books/volumes/:id',
+            methods:['GET','DELETE'],
+        },
+        {
+            path:'./api/magazines',
+            methods:['GET','POST'],
+        },
+        {
+            path:'./api/magazines/:id',
+            methods:['DELETE','GET','PATCH'],
+        },
+        {
+            path:'./app/calculate',
+            methods:['GET'],
+        },
+        {
+            path:'./app/calculate/:id',
+            methods:['GET','PUT','PATCH'],
+        },
+        {
+            path:'./app/signup/members/:id',
+            methods:['GET','PUT','PATCH'],
+        },
+        {
+            path:'./app/signup/new/vip',
+            methods:['GET','POST'],
+        },
     ]
 }

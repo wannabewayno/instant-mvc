@@ -1,16 +1,3 @@
-# instant-mvc
-The dev tool that creates an mvc frame-work for you in an instant
-
-## Getting Started
-`npm install instant-mvc --save-dev`
-
-create a mvc.config.js file in the root of your directory
-
-#### Inisde mvc.config.js
-
-define the routes you want as an array of objects
-here's an example:
-```
 module.exports = {
     routes:[
         {
@@ -39,7 +26,3 @@ module.exports = {
         },
     ]
 }
-```
-`npx build-routes`
-
-That's it, get back to more important things
