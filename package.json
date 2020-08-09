@@ -4,7 +4,7 @@
   "description": "an instant mvc boilerplate",
   "main": "./bin/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "bin": {
     "build-routes": "./bin/index.js"
@@ -36,6 +36,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "jest": "^26.2.2"
   }
 }

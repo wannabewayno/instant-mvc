@@ -40,6 +40,11 @@ function expandRoute(routeMap, routeBreakdown, methods) {
     } 
 }
 
+/**
+ * reads the mvc.config.js file and returns a routeMap.
+ * Maps user's routes to a pseudo folder structure
+ * @return {Object} - routeMap
+ */
 function buildRouteMap () {
     //guard clause, checks that a congfig file exists
     if(!doesConfigExist()) {
