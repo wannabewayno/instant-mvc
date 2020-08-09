@@ -1,4 +1,11 @@
+const fs = require('fs');
 const config = require('../mvc.config');
+
+function doesConfigExist(){
+    return fs.readdirSync('./').some(file => file==='mvc.config.js');
+}
+
+console.log(doesConfigExist());
 
 function buildRouteMap (){
     // placeholder map

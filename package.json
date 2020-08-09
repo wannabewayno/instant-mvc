@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "build-routes": "./cli.js"
+    "build-routes": "./bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,13 @@
   "keywords": [
     "mvc",
     "boilerplate",
-    "react"
+    "react",
+    "automation",
+    "routing",
+    "routes",
+    "route",
+    "controllers",
+    "controller"
   ],
   "author": "wayne c griffiths",
   "license": "MIT",
