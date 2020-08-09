@@ -1,13 +1,28 @@
 const fs = require('fs');
-const config = require('../mvc.config');
+const chalk = require('chalk');
 
 function doesConfigExist(){
-    return fs.readdirSync('./').some(file => file==='mvc.config.js');
+    return fs.readdirSync('./').some(file => file === 'mvc.config.js');
 }
 
-console.log(doesConfigExist());
-
 function buildRouteMap (){
+    //guard clause, checks that a congfig file exists
+    if(!doesConfigExist()) {
+        console.log(chalk.bgRed.bold('No mvc.config.js file detected at the root of your project!'));
+        return;
+    }
+    // if it exists, require our config file
+    const config = require('../mvc.config');
+
+    //gaurd clause, checks that the 'routes' key exists in the mvc.config.js
+    if(!config.routes) {
+        console.log(
+            chalk.bgRed.bold("Error: mvc.config.js requires a 'routes' key that describes your routes! \n"),
+            chalk.yellow("Try checking that 'routes' is plural and not the singular 'route' :D")
+        )
+        return;
+    } 
+    
     // placeholder map
     const routeMap = {}
     // go through each route specified in config.
@@ -22,6 +37,8 @@ function buildRouteMap (){
     })
     return routeMap;
 }
+
+buildRouteMap()
 
 
 
