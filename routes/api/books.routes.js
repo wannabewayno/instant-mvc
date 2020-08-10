@@ -1,3 +1,4 @@
+const { books:{ getAllBooks, createBook, findBookById, deleteBook, updateBook, } } = require('../../controllers')
 const router = require('express').Router();
 
 // Matches with /api/books 

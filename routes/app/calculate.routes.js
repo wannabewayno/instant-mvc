@@ -1,3 +1,4 @@
+const { calculate:{ calculate, } } = require('../../controllers')
 const router = require('express').Router();
 
 // Matches with /app/calculate/:number 

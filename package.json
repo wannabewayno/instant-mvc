@@ -31,10 +31,10 @@
   },
   "homepage": "https://github.com/wannabewayno/instant-mvc#readme",
   "peerDependencies": {
-   "express":"^4.17.1",
-   "compression":"^1.7.4",
-   "dotenv":"^8.2.0", 
-   "cors":"^2.8.5"
+    "express": "^4.17.1",
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "cors": "^2.8.5"
   },
   "dependencies": {
     "chalk": "^4.1.0",

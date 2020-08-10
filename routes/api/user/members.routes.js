@@ -1,3 +1,4 @@
+const { members:{ findAllMembers, createMember, findMemberById, updateMember, } } = require('../../../controllers')
 const router = require('express').Router();
 
 // Matches with /api/user/members 
