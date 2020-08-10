@@ -1,9 +1,6 @@
 const router = require('express').Router();
 
-// calculate routes
-router.use('/calculate', require('./calculate.routes'));
-
-// signup routes
-router.use('/signup',require('./signup'));
+// calculate routes 
+router.use('/calculate', require('./calculate.routes')); 
 
 module.exports = router;

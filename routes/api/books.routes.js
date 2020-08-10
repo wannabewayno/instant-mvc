@@ -1,18 +1,14 @@
 const router = require('express').Router();
 
-// Matches with '/api/books
-router
-    .route('/')
-    .get(booksController)
-    .post(booksController);
+// Matches with /api/books 
+router('/') 
+    .get(getAllBooks) 
+    .post(createBook) 
 
-// Matches with '/api/books/:id
-router
-    .route('/:id')
-    .get(booksController)
-    .delete(booksController);
-
-// volumes routes
-router.use('/volumes', require('./volumes.routes'));
+// Matches with /api/books/:id 
+router('/:id') 
+    .get(findBookById) 
+    .delete(deleteBook) 
+    .patch(updateBook) 
 
 module.exports = router;

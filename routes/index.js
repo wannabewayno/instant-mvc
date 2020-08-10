@@ -1,12 +1,39 @@
 const router = require('express').Router();
 
-// html routes
-router.use('/',require('./html'));
+// Matches with ./index 
+router.use('/index', (req,res) => {
+    res.sendFile(
+        path.join(
+            path.relative(__dirname,path.resolve('./')),
+            'index.html'
+        )
+    )
+}) 
 
-// api routes
-router.use('/api',require('./api'));
+// Matches with ./login 
+router.use('/login', (req,res) => {
+    res.sendFile(
+        path.join(
+            path.relative(__dirname,path.resolve('./')),
+            'login.html'
+        )
+    )
+}) 
 
-// app routes
-router.use('/app',require('./app'));
+// Matches with ./signup 
+router.use('/signup', (req,res) => {
+    res.sendFile(
+        path.join(
+            path.relative(__dirname,path.resolve('./')),
+            'signup.html'
+        )
+    )
+}) 
+
+// api routes 
+router.use('/api', require('./api')); 
+
+// app routes 
+router.use('/app', require('./app')); 
 
 module.exports = router;
