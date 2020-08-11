@@ -4,3 +4,4 @@ demo
 package-lock.json
 .gitignore
 node_modules
+./assets

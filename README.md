@@ -1,45 +1,96 @@
 # instant-mvc
-The dev tool that creates an mvc frame-work for you in an instant
+Create an mvc frame-work in an instant
 
 ## Getting Started
+Three steps!
+* Installation
+* Create a mvc.config.js file
+* Run the command line utility
+
+### Installation 
 `npm install instant-mvc --save-dev`
 
-create a mvc.config.js file in the root of your directory
+### Config
+Create a mvc.config.js file in the root directory
+<img src='./assets/images/config-example.PNG'/>
 
-#### Inisde mvc.config.js
-
-define the routes you want as an array of objects
-here's an example:
+Add this code to the mvc.config.js
 ```
 module.exports = {
-    routes:[
-        {
-            path:'./html/index',
-            methods:['GET'],
-        },
-        {
-            path:'./html/login',
-            methods:['GET'],
-        },
-        {
-            path:'./html/signup',
-            methods:['GET'],
-        },
-        {
-            path:'./api/user',
-            methods:['GET','POST'],
-        },
-        {
-            path:'./api/user/:id',
-            methods:['GET','DELETE','PUT','PATCH'],
-        },
-        {
-            path:'./api/user/members',
-            methods:['GET','POST'],
-        },
-    ]
+    routes: {}
 }
 ```
-`npx build-routes`
+You will define your routes here as an object.
 
-That's it, get back to more important things
+##### Defining a route
+you define a route as a key:value pair that takes on the form
+`<route path>:<method>`
+
+defining a 'GET' route at '/api/posts' would look like:
+`'/api/posts':'GET'`
+
+##### multiple methods to a route
+For multiple methods, use an array
+`'/api/posts':['GET','POST','DELETE']`
+
+##### Adding controllers to a method
+To add a controller to a REST method, use an array
+`[<method>,<controller>]`
+
+Example:
+```
+'/api/posts':[
+    ['GET','getAllPosts'],
+    ['POST','createPost'],
+]
+```
+##### Putting it all together
+Here's an example config
+```
+module.exports = {
+    routes:{
+        '/index':'index.html'
+        '/api/posts':[
+            ['GET','getAllPosts'],
+            ['POST','createPost'],
+        ],
+        '/api/posts/:id':[
+            ['GET','findPostById'],
+            ['DELETE','deletePost'],
+            ['PATCH','updatePost'],
+        ],
+        '/api/user':[
+            ['POST','createUser'],
+        ],
+        '/api/user/:id':[
+            ['GET','findUserById'],
+            ['DELETE','deleteUser'],
+            ['PATCH','updateUser'],
+        ]
+    }
+}
+```
+
+### Build
+Once the an mvc.config.js file has been set up
+run `npx instant-mvc`
+
+This will:
+* Add a routes directory with all routes hooked to controllers (if defined that way).
+* Add a controllers directory with a controller framework ready to add code to.
+* Add a models directory with a models framework to add code to.
+* Add a server.js file that: 
+  * uses compression
+  * has cors configured
+  * is set up for data parsing
+  * initialises env variables
+  * hooked to your routes
+  * starts a server with `npm start`
+
+
+#### That's it, get back to more important things
+
+### Controller and Models directories
+When these directories are set up, they contain an index file that autobundles all controllers and models into an object. If you want to add or remove controllers/models. Simple add and removes files. The exported object will automatically contain these files for you.
+
+
