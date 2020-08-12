@@ -5,12 +5,13 @@ Create an mvc frame-work in an instant
 Three steps!
 * Installation `npm install instant-mvc --save-dev`
 * Create a mvc.config.js file
-* Run the command line utility `npx instant-mvc`
+* Run the command line utility `npx instant-mvc` 
+### That's it! get back to building the app.
 
 ### Installation 
 `npm install instant-mvc --save-dev`
 
-### Config
+### Inside the mvc.config.js
 Create a mvc.config.js file in the root directory
 <img src='./assets/images/config-example.PNG'/>
 
@@ -72,7 +73,7 @@ module.exports = {
 }
 ```
 
-### Build
+### Running instant-mvc
 Once a mvc.config.js file has been set up
 run `npx instant-mvc`
 
@@ -87,7 +88,7 @@ This will:
   * initialises env variables
   * hooked to your routes
   * starts a server with `npm start`
-### That's it! get back to building the app.
+
 
 ## More Information
 
