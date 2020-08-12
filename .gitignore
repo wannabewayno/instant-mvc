@@ -2,3 +2,4 @@ node_modules
 ./routes
 mvc.config.js
 .gitignore
+.npmignore
