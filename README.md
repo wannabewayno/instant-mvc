@@ -8,9 +8,6 @@ Three steps!
 * Run the command line utility `npx instant-mvc` 
 ### That's it! get back to building the app.
 
-### Installation 
-`npm install instant-mvc --save-dev`
-
 ### Inside the mvc.config.js
 Create a mvc.config.js file in the root directory
 <img src='./assets/images/config-example.PNG'/>
@@ -24,15 +21,11 @@ module.exports = {
 You will define your routes here as an object.
 
 ##### Defining a route
-you define a route as a key:value pair that takes on the form
-`<route path>:<method>`
-
-defining a 'GET' route at '/api/posts' would look like:
-`'/api/posts':'GET'`
+You define a route as a key:value pair that takes on the form: `<route path>:<method>`
+Defining a 'GET' route at '/api/posts' would look like: `'/api/posts':'GET'`
 
 ##### multiple methods to a route
-For multiple methods, use an array
-`'/api/posts':['GET','POST','DELETE']`
+For multiple methods, use an array: `'/api/posts':['GET','POST','DELETE']`
 
 ##### Adding controllers to a method
 To add a controller to a REST method, use an array
@@ -43,6 +36,15 @@ Example:
 '/api/posts':[
     ['GET','getAllPosts'],
     ['POST','createPost'],
+]
+```
+##### Possible issues
+If only adding one `[<method>,<controller>]` to a route, make sure to define this as an Array of Arrays. Otherwise stranger things will occur.
+
+Explicity, like this:
+```
+'/api/posts':[
+    ['GET','getAllPosts'],
 ]
 ```
 
