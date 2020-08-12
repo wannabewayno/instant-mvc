@@ -3,9 +3,9 @@ Create an mvc frame-work in an instant
 
 ## Getting Started
 Three steps!
-* Installation
+* Installation `npm install instant-mvc --save-dev`
 * Create a mvc.config.js file
-* Run the command line utility
+* Run the command line utility `npx instant-mvc`
 
 ### Installation 
 `npm install instant-mvc --save-dev`
@@ -44,6 +44,7 @@ Example:
     ['POST','createPost'],
 ]
 ```
+
 ##### Putting it all together
 Here's an example config
 ```
@@ -72,13 +73,13 @@ module.exports = {
 ```
 
 ### Build
-Once the an mvc.config.js file has been set up
+Once a mvc.config.js file has been set up
 run `npx instant-mvc`
 
 This will:
 * Add a routes directory with all routes hooked to controllers (if defined that way).
 * Add a controllers directory with a controller framework ready to add code to.
-* Add a models directory with a models framework to add code to.
+* Add a models directory with a models framework ready to add code to.
 * Add a server.js file that: 
   * uses compression
   * has cors configured
@@ -86,11 +87,25 @@ This will:
   * initialises env variables
   * hooked to your routes
   * starts a server with `npm start`
+### That's it! get back to building the app.
 
+## More Information
 
-#### That's it, get back to more important things
-
-### Controller and Models directories
+### Controllers and Models directories
 When these directories are set up, they contain an index file that autobundles all controllers and models into an object. If you want to add or remove controllers/models. Simple add and removes files. The exported object will automatically contain these files for you.
+
+### Config Options
+To configure extra options, add them as key:value pairs to the mvc.config.js file
+
+Advanced configuration options are:
+* buildPath: relative path from the root to where build/dist files should be referenced from.
+* htmlPath: relative path from the root to where html files should be referenced from.
+* 
+
+### Issues
+
+### Contributing
+
+### License
 
 
