@@ -53,7 +53,7 @@ Here's an example config
 ```
 module.exports = {
     routes:{
-        '/index':'index.html'
+        '/index':'index.html',
         '/api/posts':[
             ['GET','getAllPosts'],
             ['POST','createPost'],

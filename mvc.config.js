@@ -4,37 +4,22 @@ module.exports = {
     bundleHTML:true,
     routes:{
         '/index':'index.html',
-        '/login':'login.html',
-        '/signup':'signup.html',
+        '/api/posts':[
+            ['GET','getAllPosts'],
+            ['POST','createPost'],
+        ],
+        '/api/posts/:id':[
+            ['GET','findPostById'],
+            ['DELETE','deletePost'],
+            ['PATCH','updatePost'],
+        ],
         '/api/user':[
-            ['GET','getAllUsers'],
             ['POST','createUser'],
         ],
         '/api/user/:id':[
             ['GET','findUserById'],
             ['DELETE','deleteUser'],
-            ['PUT','updateUser'],
-            ['PATCH','updateUserCredentials'],
-        ],
-        '/api/user/members':[
-            ['GET','findAllMembers'],
-            ['POST','createMember'],
-        ],
-        '/api/user/members/:id':[
-            ['GET','findMemberById'],
-            ['PATCH','updateMember'],
-        ],
-        '/api/books':[
-            ['GET','getAllBooks'],
-            ['POST','createBook'],
-        ],
-        '/api/books/:id':[
-            ['GET','findBookById'],
-            ['DELETE','deleteBook'],
-            ['PATCH','updateBook'],
-        ],
-        '/app/calculate/:number':[
-            ['GET','calculate']
+            ['PATCH','updateUser'],
         ]
     }
 }
