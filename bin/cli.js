@@ -10,11 +10,8 @@ const buildControllers = require('../lib/buildControllers');
 const configurePackageJSON = require('../lib/configurePackageJSON');
 
 function main(){
-    // read the package.json from the root
-    // adds a start script if need be, returns information about the project to autofill route options
-
+    // read package.json from the root
     const appInfo = configurePackageJSON();
-    // if it's a react application, we want to serve an index file from /client/build/index.html
 
     const routeMap = buildRouteMap();
 

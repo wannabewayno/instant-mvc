@@ -114,7 +114,7 @@ for a React app from scratch with a server...
 * create an mvc.config.js file with your routes and controllers.
 * `npx instant-mvc`
 * `npm install` this is a necessary step as the package.json file was updated with dependencies.
-* `npm start`
+* `npm start` run the app!
 
 That's it! You'll have a react app, with routes, with controllers, with a bells and whistles server running on localhost:3001. Neat huh?
 
