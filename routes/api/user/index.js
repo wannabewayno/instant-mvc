@@ -1,12 +1,14 @@
-const { user:{ createUser, findUserById, deleteUser, updateUser, } } = require('../../controllers')
+const { user:{ createUser, findUserById, deleteUser, updateUser, } } = require('../../../controllers')
 const router = require('express').Router();
 
 // Matches with /api/user 
-router('/') 
+router
+    .route('/')
     .post(createUser) 
 
 // Matches with /api/user/:id 
-router('/:id') 
+router
+    .route('/:id')
     .get(findUserById) 
     .delete(deleteUser) 
     .patch(updateUser) 

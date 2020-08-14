@@ -2,12 +2,14 @@ const { VIP:{ getAllVIPS, createVIP, findVIPById, deleteVIP, updateVIP, } } = re
 const router = require('express').Router();
 
 // Matches with /api/user/VIP 
-router('/') 
+router
+    .route('/')
     .get(getAllVIPS) 
     .post(createVIP) 
 
 // Matches with /api/user/VIP/:id 
-router('/:id') 
+router
+    .route('/:id')
     .get(findVIPById) 
     .delete(deleteVIP) 
     .patch(updateVIP) 

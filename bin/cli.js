@@ -91,7 +91,7 @@ function buildFile(routeMap,currentPath,isIndex) {
         filePath = path.format({ dir , base:`${base}.routes.js`});
     }
 
-    const { controllerMap, data } = createFileData(routeMap,currentPath,buildPath);
+    const { controllerMap, data } = createFileData(routeMap,currentPath,buildPath,isIndex);
    
     fs.writeFileSync(filePath,data);
 
@@ -103,7 +103,7 @@ function modifyRoutesIndex(framework){
     let indexData = fs.readFileSync(indexPath);
     switch(framework) {
         case'react': // for react, serve the index.html by default
-            // we'll server this at the end of index file, so find the router export.
+            // we'll serve this at the end of the index file, so find where we export the router.
             const insertAt = indexData.indexOf('module.exports = router;');
             indexData = indexData.slice(0,insertAt) + require('../lib/react/serveIndexFile') + indexData.slice(insertAt);
         break;
