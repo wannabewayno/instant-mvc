@@ -1,6 +1,6 @@
 {
  "name": "instant-mvc",
- "version": "0.3.6",
+ "version": "0.3.7",
  "description": "an mvc framework boilerplate",
  "main": "server.js",
  "scripts": {
