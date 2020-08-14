@@ -24,7 +24,7 @@ app.use(express.json());
 
 // Set static assets path
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
+    app.use(express.static("./client/build"));
 }
 
 // API routing
@@ -37,4 +37,4 @@ app.use(require('./routes'))
 const PORT = process.env.PORT || 3001;
 
 // Launch App
-app.listen(PORT, () => console.log(`🌎 ==> API server now on port ${PORT}!`))
+app.listen(PORT, () => console.log(`🌎 ==> Server now on port ${PORT}!`))

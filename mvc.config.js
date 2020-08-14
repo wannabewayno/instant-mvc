@@ -1,6 +1,5 @@
 module.exports = {
     routes:{
-        '/index':'index.html',
         '/api/posts':[
             ['GET','getAllPosts'],
             ['POST','createPost'],
@@ -17,6 +16,15 @@ module.exports = {
             ['GET','findUserById'],
             ['DELETE','deleteUser'],
             ['PATCH','updateUser'],
-        ]
+        ],
+        '/api/user/VIP':[
+            ['GET','getAllVIPS'],
+            ['POST','createVIP'],
+        ],
+        '/api/user/VIP/:id':[
+            ['GET','findVIPById'],
+            ['DELETE','deleteVIP'],
+            ['PATCH','updateVIP'],
+        ],
     }
 }

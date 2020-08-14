@@ -8,26 +8,32 @@ const createFileData = require('../lib/createFileData');
 const buildServer = require('../lib/buildServer');
 const buildControllers = require('../lib/buildControllers');
 const configurePackageJSON = require('../lib/configurePackageJSON');
+let { buildPath } = require(path.resolve('./mvc.config'));
 
 function main(){
     // read package.json from the root
     const appInfo = configurePackageJSON();
 
+    if(!buildPath) buildPath = appInfo.buildPath;
+
+    // builds a 'route map', a JSON that mimics the file structure we're after
     const routeMap = buildRouteMap();
 
     console.log('Route Map:',JSON.stringify(routeMap,null,4));
 
-    // build the first directory at the root as 'routes'
+    // build a routes directory at the root
     buildDirectory(routeMap['/'],'./routes');
 
-    // go through the routeMap from the root, returns any controllers that has been defined    
+    // go through the routeMap from the root, returns any controllers that have been defined    
     const controllers = traverseRoute(routeMap['/'],'./routes');
 
-    // add a controller directory with controller methods ready to add code to
+    if(appInfo.framework) modifyRoutesIndex(appInfo.framework);
+
+    // add a controllers directory with controller methods ready to add code to
     buildControllers(controllers);
     
-    // builds a server with all the usual bells and whistles
-    buildServer();
+    // builds a server with all the usual bells and whistles, serving static assets from defined buildPath;
+    buildServer(buildPath);
 }
 
 main()
@@ -44,7 +50,7 @@ function traverseRoute(routeMap, parentPath){
 
         let controllerMap; // placeholder for any found controllers as we navigate through routes
         switch(decision){
-            case'directory': 
+            case'directory':
                 // build directory
                 controllerMap = buildDirectory(routeMap[route],thisPath);
                 controllers.push(controllerMap);
@@ -57,22 +63,11 @@ function traverseRoute(routeMap, parentPath){
                 // build a route
                 controllerMap = buildFile(routeMap[route], thisPath);
                 controllers.push(controllerMap);
-
-                break;
-            // TODO: route directory and directory do exactly the same thing
-            // go ahead and modify lookAhead() to only give directory or route
-            case'route directory':
-                // build directory
-                controllerMap = buildDirectory(routeMap[route],thisPath);
-                controllers.push(controllerMap);
-
-                // keep expanding
-                controllers.push(...traverseRoute(routeMap[route], thisPath));
                 break;
         }
         // keep looping through this level
     }
-    return controllers;
+    return controllers; // return all controllers to top level, passed to buildControllers()
 }
 
 function buildDirectory(routeMap,currentPath){
@@ -96,31 +91,24 @@ function buildFile(routeMap,currentPath,isIndex) {
         filePath = path.format({ dir , base:`${base}.routes.js`});
     }
 
-    const { controllerMap, data } = createFileData(routeMap,currentPath);
+    const { controllerMap, data } = createFileData(routeMap,currentPath,buildPath);
    
     fs.writeFileSync(filePath,data);
 
     return controllerMap;
 }
 
-function buildIndex(routeMap,currentPath){
-    const indexPath = path.join(currentPath,'/index.js');
+function modifyRoutesIndex(framework){
+    const indexPath = path.resolve('./routes/index.js')
+    let indexData = fs.readFileSync(indexPath);
+    switch(framework) {
+        case'react': // for react, serve the index.html by default
+            // we'll server this at the end of index file, so find the router export.
+            const insertAt = indexData.indexOf('module.exports = router;');
+            indexData = indexData.slice(0,insertAt) + require('../lib/react/serveIndexFile') + indexData.slice(insertAt);
+        break;
+    }
 
-    const { controllerMap, data } = createFileData(routeMap,currentPath);
-
-    fs.writeFileSync(indexPath,data)
-
-    return controllerMap;
+    //rewrite the data
+    fs.writeFileSync(indexPath, indexData);
 }
-
-function buildRoute(routeMap,currentPath){
-    const { base, dir } = path.parse(path.join('./',currentPath));
-    const routePath = path.format({ dir , base:`${base}.routes.js`})
-
-    const { controllerMap, data } = createFileData(routeMap,currentPath);
-   
-    fs.writeFileSync(routePath,data);
-
-    return controllerMap;
-}
-

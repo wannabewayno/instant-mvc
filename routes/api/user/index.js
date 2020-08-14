@@ -11,4 +11,7 @@ router('/:id')
     .delete(deleteUser) 
     .patch(updateUser) 
 
+// VIP routes 
+router.use('/VIP', require('./VIP.routes')); 
+
 module.exports = router;
