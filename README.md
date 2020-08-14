@@ -53,7 +53,9 @@ Here's an example config
 ```
 module.exports = {
     routes:{
-        '/index':'index.html',
+        '/home':'index.html',
+        '/login':'login.html',
+        '/dashboard':'dashboard.html',
         '/api/posts':[
             ['GET','getAllPosts'],
             ['POST','createPost'],
@@ -70,7 +72,16 @@ module.exports = {
             ['GET','findUserById'],
             ['DELETE','deleteUser'],
             ['PATCH','updateUser'],
-        ]
+        ],
+        '/api/user/VIP':[
+            ['GET','getAllVIPS'],
+            ['POST','createVIP'],
+        ],
+        '/api/user/VIP/:id':[
+            ['GET','findVIPById'],
+            ['DELETE','deleteVIP'],
+            ['PATCH','updateVIP'],
+        ],
     }
 }
 ```
@@ -82,7 +93,6 @@ run `npx instant-mvc`
 This will:
 * Add a routes directory with all routes hooked to controllers (if defined that way).
 * Add a controllers directory with a controller framework ready to add code to.
-* Add a models directory with a models framework ready to add code to.
 * Add a server.js file that: 
   * uses compression
   * has cors configured
@@ -92,36 +102,44 @@ This will:
   * starts a server with `npm start`
 
 
-## More Information
-
-### Controllers and Models directories
+## Controllers directory
 When these directories are set up, they contain an index file that autobundles all controllers and models into an object. If you want to add or remove controllers/models. Simple add and removes files. The exported object will automatically contain these files for you.
 
 ### Config Options
 To configure extra options, add them as key:value pairs to the mvc.config.js file
 
-### Frameworks 
+All config options:
+* buildPath: path from the root to where static assets should be served from
+* htmlPath: path from the root to where html should be served from
+
+## Frameworks 
 instant-mvc aims to effortlessly connect an mvc framework to your prefered JS framework.
 
-#### React
+### React
 Currently v0.3.1 supports create-react-app if housed in a 'client' folder. Instant-mvc will autoDetect React if it's under 'client' and configure your routes to reference everything from the build directory.
 
-###### What do I have to do?
-for a React app from scratch with a server...
-* Navigate to a directory in your terminal `npx create-react-app client`
-* `npm init` follow the prompts. Make sure you're in the root dir and not in the 'client' dir!
+#### React quick start
+From scratch, A create-react-app with a server:
+* Make a new directory
+* `npx create-react-app client`
+* `npm init`
 * `npm install instant-mvc`
-* create an mvc.config.js file with your routes and controllers.
+* Create an mvc.config.js file with your routes and controllers.
 * `npx instant-mvc`
-* `npm install` this is a necessary step as the package.json file was updated with dependencies.
+* `npm install` Necessary step, the package.json file has been updated.
 * `npm start` run the app!
 
 That's it! You'll have a react app, with routes, with controllers, with a bells and whistles server running on localhost:3001. Neat huh?
 
-### Issues
+#### React Specific Information
+If using React Router (we recommend that you do), then there's no need to define a default for serving the index. we take care of this to.
 
-### Contributing
+If not using React Router, then simply serve up html files as you normally would, instant-mvc knows to serve these from `./client/build/<fileName>.html`
 
-### License
+## Issues
+
+## Contributing
+
+## License
 
 
