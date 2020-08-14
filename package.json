@@ -2,7 +2,7 @@
  "name": "instant-mvc",
  "version": "0.3.3",
  "description": "an mvc framework boilerplate",
- "main": "./bin/cli.js",
+ "main": "server.js",
  "scripts": {
   "test": "jest",
   "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",

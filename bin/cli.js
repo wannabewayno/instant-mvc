@@ -45,11 +45,8 @@ function traverseRoute(routeMap, parentPath){
         let controllerMap; // placeholder for any found controllers as we navigate through routes
         switch(decision){
             case'directory': 
-                // make directory
-                fs.mkdirSync(thisPath)
-
-                // every directory has an index, build one.
-                controllerMap = buildIndex(routeMap[route],thisPath);
+                // build directory
+                controllerMap = buildDirectory(routeMap[route],thisPath);
                 controllers.push(controllerMap);
 
                 // keep expanding
@@ -58,13 +55,14 @@ function traverseRoute(routeMap, parentPath){
 
             case'route':
                 // build a route
-                controllerMap = buildRoute(routeMap[route], thisPath);
+                controllerMap = buildFile(routeMap[route], thisPath);
                 controllers.push(controllerMap);
 
                 break;
-
+            // TODO: route directory and directory do exactly the same thing
+            // go ahead and modify lookAhead() to only give directory or route
             case'route directory':
-                // complex route, build directory and route
+                // build directory
                 controllerMap = buildDirectory(routeMap[route],thisPath);
                 controllers.push(controllerMap);
 
@@ -77,9 +75,33 @@ function traverseRoute(routeMap, parentPath){
     return controllers;
 }
 
-// TODO: let's turn buildIndex and buildRoute into buildFile
+function buildDirectory(routeMap,currentPath){
+    // make directory
+    fs.mkdirSync(currentPath)
 
-// TODO: let's remove buildDirectory
+    // every directory has an index, build one.
+    const controllerMap = buildFile(routeMap,currentPath,true);
+
+    return controllerMap
+}
+
+function buildFile(routeMap,currentPath,isIndex) {
+
+    let filePath;
+    if(isIndex) {
+        filePath = path.join(currentPath,'/index.js');
+
+    } else {
+        const { base, dir } = path.parse(path.join('./',currentPath));
+        filePath = path.format({ dir , base:`${base}.routes.js`});
+    }
+
+    const { controllerMap, data } = createFileData(routeMap,currentPath);
+   
+    fs.writeFileSync(filePath,data);
+
+    return controllerMap;
+}
 
 function buildIndex(routeMap,currentPath){
     const indexPath = path.join(currentPath,'/index.js');
