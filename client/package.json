@@ -1,0 +1,6 @@
+{
+ "dependencies": {
+  "react": "^16.13.1"
+ },
+ "proxy": "http://localhost:3001"
+}

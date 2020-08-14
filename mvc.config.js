@@ -1,7 +1,4 @@
 module.exports = {
-    buildPath:'./',
-    stack:'MERN',
-    bundleHTML:true,
     routes:{
         '/index':'index.html',
         '/api/posts':[

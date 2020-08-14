@@ -20,7 +20,7 @@ function main(){
     // build the first directory at the root as 'routes'
     buildDirectory(routeMap['/'],'./routes');
 
-    // go through the routeMap from the root, returns any controllers that has been defined
+    // go through the routeMap from the root, returns any controllers that has been defined    
     const controllers = traverseRoute(routeMap['/'],'./routes');
 
     // add a controller directory with controller methods ready to add code to
@@ -46,7 +46,10 @@ function traverseRoute(routeMap, parentPath){
         switch(decision){
             case'directory': 
                 // make directory
-                controllerMap = buildDirectory(routeMap[route],thisPath);
+                fs.mkdirSync(thisPath)
+
+                // every directory has an index, build one.
+                controllerMap = buildIndex(routeMap[route],thisPath);
                 controllers.push(controllerMap);
 
                 // keep expanding
@@ -74,6 +77,9 @@ function traverseRoute(routeMap, parentPath){
     return controllers;
 }
 
+// TODO: let's turn buildIndex and buildRoute into buildFile
+
+// TODO: let's remove buildDirectory
 
 function buildIndex(routeMap,currentPath){
     const indexPath = path.join(currentPath,'/index.js');
@@ -81,16 +87,6 @@ function buildIndex(routeMap,currentPath){
     const { controllerMap, data } = createFileData(routeMap,currentPath);
 
     fs.writeFileSync(indexPath,data)
-
-    return controllerMap;
-}
-
-
-function buildDirectory(routeMap,currentPath){
-    fs.mkdirSync(currentPath)
-
-    // every directory has an index, build one.
-    const controllerMap = buildIndex(routeMap,currentPath);
 
     return controllerMap;
 }
