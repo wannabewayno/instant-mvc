@@ -1,5 +1,5 @@
 # instant-mvc
-Create an mvc frame-work in an instant
+Create an mvc framework in an instant
 
 ## Getting Started
 Three steps!
@@ -22,7 +22,7 @@ You will define your routes here as an object.
 
 ##### Defining a route
 You define a route as a key:value pair that takes on the form: `<route path>:<method>`
-Defining a 'GET' route at '/api/posts' would look like: `'/api/posts':'GET'`
+Defining a 'GET' method at '/api/posts' would look like: `'/api/posts':'GET'`
 
 ##### multiple methods to a route
 For multiple methods, use an array: `'/api/posts':['GET','POST','DELETE']`
@@ -103,7 +103,7 @@ This will:
 
 
 ## Controllers directory
-When these directories are set up, they contain an index file that autobundles all controllers and models into an object. If you want to add or remove controllers/models. Simple add and removes files. The exported object will automatically contain these files for you.
+When these directories are set up, they contain an index file that autobundles all controllers into an object. If you want to add or remove controllers. Simply add and removes files. The exported object will automatically contain these files for you.
 
 ### Config Options
 To configure extra options, add them as key:value pairs to the mvc.config.js file
@@ -112,11 +112,11 @@ All config options:
 * buildPath: path from the root to where static assets should be served from
 * htmlPath: path from the root to where html should be served from
 
-## Frameworks 
+## JS Frameworks 
 instant-mvc aims to effortlessly connect an mvc framework to your prefered JS framework.
 
 ### React
-Currently v0.3.1 supports create-react-app if housed in a 'client' folder. Instant-mvc will autoDetect React if it's under 'client' and configure your routes to reference everything from the build directory.
+Currently v0.3.8 supports create-react-app if housed in a 'client' folder. Instant-mvc will autoDetect React if it's under 'client' and configure your routes to reference everything from the build directory.
 
 #### React quick start
 From scratch, A create-react-app with a server:
@@ -132,14 +132,17 @@ From scratch, A create-react-app with a server:
 That's it! You'll have a react app, with routes, with controllers, with a bells and whistles server running on localhost:3001. Neat huh?
 
 #### React Specific Information
-If using React Router (we recommend that you do), then there's no need to define a default for serving the index. we take care of this to.
+If using React Router (we recommend that you do), then there's no need to define a default for serving the index. we take care of this too.
 
 If not using React Router, then simply serve up html files as you normally would, instant-mvc knows to serve these from `./client/build/<fileName>.html`
 
 ## Issues
+We're still in beta! (from 15/08/2020), if you want a feature or have an issue, please let us know <a href="https://github.com/wannabewayno/instant-mvc/issues">here</a>.
 
 ## Contributing
+Want to Contribute? Flick <a href="https://github.com/wannabewayno">Wayne</a> a message on github and let's have a chat.
 
 ## License
+Licensed under the MIT License 
 
 
