@@ -136,6 +136,15 @@ If using React Router (we recommend that you do), then there's no need to define
 
 If not using React Router, then simply serve up html files as you normally would, instant-mvc knows to serve these from `./client/build/<fileName>.html`
 
+## Future Development
+Currently instant-mvc is designed to be run at the start of the project as boilerplate, building the app on top of it. Ultimately instant-mvc is being developed to be boilerplate and a route management tool that...
+* add/remove routes and controllers by adjusting the config
+* integrate your preference of database and set up models for you.
+* have a more configurable server.js
+* set up database connection for you from your flavour of db.
+
+If there's anything you would like to see on here, go to the github issues page (below) and request a feature, we're still in beta, anything can happen. 
+
 ## Issues
 We're still in beta! (from 15/08/2020), if you want a feature or have an issue, please let us know <a href="https://github.com/wannabewayno/instant-mvc/issues">here</a>.
 
